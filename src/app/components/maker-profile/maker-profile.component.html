@@ -1,1 +1,38 @@
-<p>maker-profile works!</p>
+<div class="maker">
+    <div class="header">
+        <app-header-profile [nombre]="nombre"></app-header-profile>
+    </div>
+    <div class="body">
+        <div class="hacedor">
+            <table class="table" *ngIf="detallesHacedor">
+                <!-- <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Nombre Tarea</th>
+                        <th scope="col">Definicion</th>
+                        <th scope="col">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let detalle of detallesHacedor ;let indice=index;">
+                        <tr>
+                            <td>{{ indice+1 }}</td>
+                            <td>{{ detalle.nombreTarea }}</td>
+                            <td>{{ detalle.definicion }}</td>
+                            <td>{{ detalle.precio }}</td>
+                        </tr>
+                    </ng-container>
+                </tbody> -->
+            </div>
+        </div>     
+        <div class="detailsProfile">
+            
+            <div class="mb-3 row">
+                <input type="submit" value="Crear Habilidad" class="btn btn-info btn-block btn-succes"
+                    (click)="crearHabilidad()">
+            </div>
+        </div>
+    </div>
+</div>
+
+

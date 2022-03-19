@@ -5,8 +5,3 @@ input.ng-valid.ng-touched{
 input.ng-invalid.ng-touched{
     border: 1px solid red
 }
-
-.error{
-    color:tomato;
-    font-size: 12 px;
-}

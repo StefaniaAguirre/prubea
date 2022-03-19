@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from 'src/app/interface/interfacesDB';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-customer-profile',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerProfileComponent implements OnInit {
 
-  constructor() { }
+  public cliente!: Customer;
+  public nombre!: string;
 
-  ngOnInit(): void {
+  constructor(
+    private _userService: UserService
+  ) {
+
   }
 
+  ngOnInit(): void {
+    
+      this._userService.datosUsuario.subscribe(result => {
+        this.cliente = result;
+        console.log("hola",this.cliente);
+        this.nombre = this.cliente.nombre;
+      }); 
+  }
 }
