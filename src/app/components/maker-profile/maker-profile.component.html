@@ -3,36 +3,128 @@
         <app-header-profile [nombre]="nombre"></app-header-profile>
     </div>
     <div class="body">
-        <div class="hacedor">
-            <table class="table" *ngIf="detallesHacedor">
-                <!-- <thead>
-                    <tr>
-                        <th scope="col">Item</th>
-                        <th scope="col">Nombre Tarea</th>
-                        <th scope="col">Definicion</th>
-                        <th scope="col">Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let detalle of detallesHacedor ;let indice=index;">
-                        <tr>
-                            <td>{{ indice+1 }}</td>
-                            <td>{{ detalle.nombreTarea }}</td>
-                            <td>{{ detalle.definicion }}</td>
-                            <td>{{ detalle.precio }}</td>
-                        </tr>
-                    </ng-container>
-                </tbody> -->
+        <div class="descripcion Perfil mb-3">
+            <h3>descripcion Usuario</h3>
+            <img>
+            <div class=" mb-3">
+                <label for="">Años: {{hacedor.edad}} </label>
             </div>
-        </div>     
-        <div class="detailsProfile">
-            
-            <div class="mb-3 row">
-                <input type="submit" value="Crear Habilidad" class="btn btn-info btn-block btn-succes"
-                    (click)="crearHabilidad()">
+
+            <div class=" mb-3">
+                <label for="">{{hacedor.direccion}}</label>
             </div>
+            <div class=" mb-3">
+                <label for="">{{hacedor.correo}}:</label>
+
+            </div>
+            <div class=" mb-3">
+                <label for="">{{hacedor.telefono}}:</label>
+            </div>
+
+        </div>
+        <mat-tab-group mat-align-tabs="start">
+            <mat-tab id="habilidadesPestana" label="Habilidades de Usuario">
+                <div class="hacedor mb-3 ">
+                    <table class="table" *ngIf="detalleHacedor">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Nombre Tarea</th>
+                                <th scope="col">Definicion</th>
+                                <th scope="col">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let detalle of detalleHacedor ;let indice=index;">
+                                <tr>
+                                    <td>{{ indice+1 }}</td>
+                                    <td>{{ detalle.nombreTarea }}</td>
+                                    <td>{{ detalle.definicion}}</td>
+                                    <td>{{ detalle.precio }}</td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="detailsProfile">
+
+                    <div class="mb-3 row">
+                        <input type="submit" value="Crear Habilidad" class="btn btn-info btn-block btn-succes"
+                            (click)="crearHabilidad()">
+                    </div>
+                </div> -->
+            </mat-tab>
+            <mat-tab label="ofertas solicitadas">
+                <div class="ofertas mb-3">
+                    <table class="table" *ngIf="serviciosOfertados">
+                        <thead>
+                            <!-- " h.nombre, s.item, s.precioServicio t.nombre as nombreTarea, s.descripcion -->
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Nombre Tarea</th>
+                                <th scope="col">Precio Servicio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let oferta of serviciosOfertados ;let indice=index;">
+                                <tr>
+                                    <td>{{ indice+1 }}</td>
+                                    <td>{{ oferta.nombreTarea }}</td>
+                                    <td>{{ oferta.precioServicio }}</td>
+                                    <td>{{ oferta.item }}</td>
+                                    <td>
+                                        <!-- Actions button -->
+                                        <div class="actionsButton">
+                                            <button mat-icon-button [routerLink]="['/detailsService']"
+                                                routerLinkActive="active"> Ver Detalle
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+
+        <hr/>
+        <div style="padding:2rem; width: 50%; margin: 5rem auto; border: 1px solid #000;" >
+            <ng-container >
+                <div class="body mb-3">
+                    <form>
+                        <div class="text-end flex margin: 5rem auto;  mt-12 -ml-4">
+                        </div>
+                        <div class="text-current mb-1">
+                            <h1>Habilidades para los hacedores</h1>
+                        </div>
+                    </form>
+                    <form [formGroup]="detallesHacedor" (ngsubmit)="onSubmit()">
+                        <mat-label placeholder="Placeholder"></mat-label>
+                        <input type="text" size="50" placeholder="Busca tareas" matInput [formControl]="formControlCode"
+                            [matAutocomplete]="autoCode" (ngModelChange)= guardarDatos($event) >
+                        <mat-autocomplete autoActiveFirstOption #autoCode="matAutocomplete">
+                            <mat-option *ngFor="let tarea of listaTareas" [value]="tarea">{{tarea}}</mat-option>
+                        </mat-autocomplete>
+                
+                        <div class="form-group mb-3 margin: 5rem auto;">
+                            <label for="">Precio que considera correcto para la Habilidad Seleccionada</label>
+                            <input type="text"  class="form-control" placeholder="precio" formControlName="precio">
+                        </div>
+                        <div class="form-group mb-3 margin: 5rem auto;">
+                            <label for="">Radio: Distancia a la que se encuentra disponible para realizar la tarea</label>
+                            <input type="text"  placeholder="Radio" class="form-control" formControlName="radio">
+                        </div>
+                        <div class="mb-3 row margin: 5rem auto;">
+                            <input type="submit" value="Agregar Habilidad" class="btn btn-info btn-block btn-succes"
+                                (click)="crearHabilidad()" [disabled]="!detallesHacedor.valid">
+                        </div>
+                    </form>
+                
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>
-
-

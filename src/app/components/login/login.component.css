@@ -5,3 +5,8 @@ input.ng-valid.ng-touched{
 input.ng-invalid.ng-touched{
     border: 1px solid red
 }
+
+.mat-radio-button  .mat-radio-button {
+    margin-left: 16px;
+    color: black;
+  }

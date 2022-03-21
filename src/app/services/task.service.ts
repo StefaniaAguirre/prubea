@@ -20,4 +20,17 @@ export class TaskService {
     const path = `http://localhost:8080/api/tarea/listarTareas`;
     return this.http.get<addTarea[]>(path);
   }
+
+
+  /**
+   * 
+   * @param nombreTarea 
+   * @returns 
+   */
+  obtenerTarea(nombreTarea:string){
+    console.log(nombreTarea);
+    
+    const path =  `http://localhost:8080/api/tarea/obtenerTarea/${nombreTarea}`;
+    return this.http.get<addTarea>(path);
+  }
 }

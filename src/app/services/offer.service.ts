@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { addOferta } from '../interface/interfacesDB';
+import { addOferta, Oferta } from '../interface/interfacesDB';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,8 @@ export class OfferService {
    * @param estado true o false si aceptan o rechazan la oferta
    * @returns 
    */
-  aceptarRechazarOferta(oferta:addOferta, estado:boolean){
-    const path = 'http://localhost:8080/api/oferta/actualizar/${oferta.idOferta}&&${estado}';
+  aceptarRechazarOferta(oferta:Oferta, estado:boolean){
+    const path = `http://localhost:8080/api/oferta/actualizar/${oferta.idOferta}&&${estado}`;
     return this.http.put<addOferta>(path, oferta)
   }
 
@@ -29,7 +29,7 @@ export class OfferService {
    * @returns 
    */
   obtenerOferta(idOferta:number){
-    const path = '';  
+    const path = ``;  
     return this.http.get<addOferta>(path)
   }
 
@@ -38,7 +38,7 @@ export class OfferService {
    * @returns 
    */
   obtenerOfertas(){
-    const path = '';  
+    const path = ``;  
     return this.http.get<addOferta[]>(path)
   }
 
@@ -47,7 +47,7 @@ export class OfferService {
    * @param oferta 
    */
   crearOferta(oferta:addOferta){
-    const path = '';  
+    const path = `http://localhost:8080/api/oferta`;  
     return this.http.post(path, oferta);
   } 
 }

@@ -1,9 +1,20 @@
 export interface AddUsuario
 {
-    usuario:Administrador;
+    nombre:string;
     edad: number;
+    correo:string;
+    contrasena:string;
     telefono: string;
     direccion:string;
+}
+
+export interface servicioCliente {
+    nombreTarea:string;
+    descripcion:string;
+    precioServicio:number;
+    pagoRealizado:boolean;
+    tareaTerminada:boolean;
+    esAceptada:boolean;
 }
 
 export interface Customer{
@@ -13,7 +24,13 @@ export interface Customer{
     edad: number;
     telefono: string;
     direccion:string;
-    idCustomer:number;
+    idCliente:number;
+}
+
+export interface Rol 
+{
+    value: string;
+    viewValue: string;
 }
 
 export interface AddMaker
@@ -24,7 +41,7 @@ export interface AddMaker
     edad: number;
     telefono: string;
     direccion:string;
-    idMaker:number;
+    idHacedor:number;
     // habilidades:AddHabilidadHacedor[];
 }
 
@@ -42,12 +59,35 @@ export interface AddHabilidadHacedor
     precioHabilidad:number;
     radio:string;
 }
-
-export interface HabilidadHacedor{
+export interface crearHabilidadHacedor
+{
+    idHabilidadHacedor:number;
     idTarea:number;
     idHacedor:number;
     precioHabilidad:number;
     radio:string;
+}
+
+export interface HabilidadHacedor{
+    idTarea:addTarea;
+    idHacedor:AddMaker;
+    precioHabilidad:number;
+    radio:string;
+}
+
+export interface servicioSolicitado{
+    item: number, 
+    descripcion: string, 
+    pagoRealizado: boolean, 
+    tareaTerminada: boolean, 
+    idCliente: Customer, 
+    idTarea: addTarea, 
+    precioServicio: number;
+}
+
+export interface verificarServicio{
+    precioHabilidad:number;
+    idHacedor:number;
 }
 
 export interface detallesHacedor{
@@ -67,6 +107,14 @@ export interface Administrador
 
 export interface addOferta
 {
+    notificacion:string;
+    fecha:Date;
+    tiempoVida:number;
+    esAceptada:boolean;
+    precioBase: number;
+}
+export interface Oferta
+{
     idOferta:number;
     notificacion:string;
     fecha:Date;
@@ -74,6 +122,7 @@ export interface addOferta
     esAceptada:boolean;
     precioBase: number;
 }
+
 
 export interface addServicio
 {
@@ -106,7 +155,7 @@ export interface addSolicitudTarea
 }
 
 export interface addTarea{
-    idtarea:number;
+    idTarea:number;
     nombre:string;
     definicion:string;
 }

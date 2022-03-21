@@ -1,39 +1,85 @@
 <div class="Login">
     <div class="header">
-        <h1>Iniciar Sesion</h1>
-        <!-- <label class="col-sm-2 col-form-label">Iniciar Sesion</label> -->
-        <div class="text-end mb-3">
-            <div class="flex items-right justify-end mt-12 -ml-4">
-                <button class="btn btn-info btn-block btn-succes" 
-                    [routerLink]="['/registration']">
-                    Registrarse
-                </button>
-            </div>
-        </div>
+        <h1>Pagina de inicio</h1>
         <div class="auth-box">
-          <div class="row m-b-20">
-            <div class="encabezado">
-                <!-- <img class="logo" src="assets/images/fondo.png"> -->
-              </div>
-          </div>
+            <div class="row m-b-20">
+                <div class="encabezado">
+                </div>
+            </div>
         </div>
     </div>
     <div class="body">
-        <form [formGroup]="login" (ngsubmit)="onSubmit()">
-            <div class="form-control mb-3">
-                <div class="form-group mb-3">
-                    <label for="">Correo</label>
-                    <input type="text" name="" id="" class="form-control" placeholder="correo" formControlName="correo">
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab id="iniciar Sesion" label="Iniciar Sesion">
+                <form [formGroup]="login" (ngsubmit)="onSubmit()">
+                    <div class="form-control mb-3">
+                        <div class="form-group mb-3">
+                            <label for="">Correo</label>
+                            <input type="text" name="" id="" class="form-control" placeholder="correo"
+                                formControlName="correo">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="">Contraseña</label>
+                            <input type="password" name="" id="" class="form-control" formControlName="contrasena">
+                        </div>
+                        <div class="mb-3 row">
+                            <input type="submit" value="iniciarSesion" class="btn btn-info btn-block btn-succes"
+                                (click)="iniciarSesion()" [disabled]="!login.valid">
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab label="Registro" id="">
+                <div class="registration">
+                    <form [formGroup]="formulario" (ngsubmit)="onSubmit()">
+                        <div class="form-control mb-3">
+                            <div class="form-group mb-3">
+                                <label for="">Nombre</label>
+                                <input type="text"  class="form-control" placeholder="nombre"
+                                    formControlName="nombre">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Edad</label>
+                                <input type="text"  class="form-control" placeholder="edad"
+                                    formControlName="edad">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Telefono</label>
+                                <input type="text"  class="form-control" placeholder="telefono"
+                                    formControlName="telefono">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Dirección</label>
+                                <input type="text"  class="form-control" placeholder="dirección"
+                                    formControlName="direccion">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Correo</label>
+                                <input type="text"  class="form-control" placeholder="correo"
+                                    formControlName="correo">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Contraseña</label>
+                                <input type="password"  class="form-control" formControlName="contrasena">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class=" mb-3">
+                        <label for="">Rol</label>
+                    </div>
+
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="mymodel">
+                        <mat-radio-button value="1">Cliente</mat-radio-button>
+                        <mat-radio-button value="2">Hacedor</mat-radio-button>
+                    </mat-radio-group>
+
+                    <div class="mb-3 row">
+                        <input type="submit" value="Registrarse" class="btn btn-info btn-block btn-succes"
+                            (click)="agregarUsuario()" [disabled]="!formulario.valid">
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="">Contraseña</label>
-                    <input type="password" name="" id="" class="form-control" formControlName="contrasena">
-                </div>
-                <div class="mb-3 row">
-                    <input type="submit" value="iniciarSesion" class="btn btn-info btn-block btn-succes"
-                        (click)="iniciarSesion()" [disabled]="!login.valid">
-                </div>
-            </div>
-        </form>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>

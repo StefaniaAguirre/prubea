@@ -4,9 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { DetailsMakerComponent } from './components/details-maker/details-maker.component';
-import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { CustomerProfileComponent, DialogElementsDialog } from './components/customer-profile/customer-profile.component';
 import { MakerProfileComponent } from './components/maker-profile/maker-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,16 +17,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
+import { DetailsServiceComponent } from './components/maker-profile/details-service/details-service.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
-    DetailsMakerComponent,
     CustomerProfileComponent,
     MakerProfileComponent,
     LoginComponent,
-    HeaderProfileComponent
+    HeaderProfileComponent,
+    DetailsServiceComponent,
+    DialogElementsDialog
   ],
   imports: [
     BrowserModule,
@@ -43,7 +43,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
+  ],
+  exports: [
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

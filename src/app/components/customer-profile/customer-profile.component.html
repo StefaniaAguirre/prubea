@@ -1,0 +1,95 @@
+<div class="customerProfile">
+    <div class="header">
+        <app-header-profile [nombre]="nombre"></app-header-profile>
+    </div>
+    <div class="body">
+        <div class="descripcion Perfil mb-3">
+            <h3>descripcion Usuario</h3>
+            <img>
+            <div class=" mb-3">
+                <label>{{cliente.edad}} años</label>
+            </div>
+            <div class=" mb-3">
+                <label>{{cliente.direccion}}</label>
+            </div>
+            <div class=" mb-3">
+                <label>{{cliente.correo}}:</label>
+            </div>
+            <div class=" mb-3">
+                <label>{{cliente.telefono}}:</label>
+            </div>
+        </div>
+
+        <mat-tab-group mat-align-tabs="start">
+            <mat-tab id="Servicios Solicitados" label="Servicios Solicitados">
+                <div class="hacedor mb-3">
+                    <h4></h4>
+                    <table class="table" *ngIf="serviciosCliente">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Nombre Tarea</th>
+                                <th scope="col">Definicion Servicio</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Pago realizado</th>
+                                <th scope="col">Tarea Terminada</th>
+                                <th scope="col">Oferta Aceptada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let detalle of serviciosCliente ;let indice=index;">
+                                <tr>
+                                    <td>{{ indice+1 }}</td>
+                                    <td>{{ detalle.nombreTarea }}</td>
+                                    <td>{{ detalle.descripcion}}</td>
+                                    <td>{{ detalle.precioServicio }}</td>
+                                    <td>{{ detalle.pagoRealizado}}</td>
+                                    <td>{{ detalle.tareaTerminada}}</td>
+                                    <td>{{ detalle.esAceptada }}</td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </mat-tab>
+
+            <mat-tab id="Solicitar Servicio" label="Solicitar Servicio">
+                <div style="padding:2rem; width: 50%; margin: 5rem auto; border: 1px solid #000;">
+
+                    <form [formGroup]="formulario" (ngsubmit)="onSubmit()">
+                        <div class="form-control mb-3 ">
+                            <div class="form-group mb-3">
+                                <mat-label placeholder="Placeholder"> Tareas disponibles</mat-label>
+                                <input type="text" size="45" placeholder="Busca tareas" matInput
+                                    [formControl]="formControlCode" [matAutocomplete]="autoCode">
+                                <mat-autocomplete autoActiveFirstOption #autoCode="matAutocomplete">
+                                    <mat-option *ngFor="let tarea of listaTareas" [value]="tarea">{{tarea}}</mat-option>
+                                </mat-autocomplete>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="">Descripción</label>
+                                <input type="text" class="form-control" placeholder="descripcion"
+                                    formControlName="descripcion">
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label for="">item: cantidad de articulos, objetos, animales o plantas</label>
+                                <input type="text" class="form-control" placeholder="item" formControlName="item">
+                            </div>
+
+                            <div class="form-group mb-3 ">
+                                <label for="">precio del servicio</label>
+                                <input type="text" class="form-control" placeholder="precioServicio" formControlName="precioServicio">
+                            </div>
+                        </div>
+                    </form>
+
+                    <input type="submit" value="Solicitar Servicio" class="btn btn-info btn-block btn-succes"
+                        (click)="crearServicio()">
+
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

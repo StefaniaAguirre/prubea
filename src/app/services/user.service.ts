@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AddHabilidadHacedor, AddMaker, AddUsuario, Administrador, Customer, detallesHacedor } from '../interface/interfacesDB';
+import { AddHabilidadHacedor, AddMaker, AddUsuario, Administrador, Customer, detallesHacedor, HabilidadHacedor } from '../interface/interfacesDB';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,28 @@ export class UserService {
     const path = `http://localhost:8080/api/cliente/loginCliente/${correo}&&${contrasena}`;
     return this.http.get<Customer>(path);
   }
+
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
+  obtenerDatosHacedor(id: number){
+    const path = `http://localhost:8080/api/hacedor/${id}`;
+    return this.http.get<AddMaker>(path);
+  }
+
+  /**
+   * 
+   * @param id 
+   * @returns 
+   */
+   obtenerDatosCliente(id: number){
+    const path = `http://localhost:8080/api/cliente/${id}`;
+    return this.http.get<Customer>(path);
+  }
+
+  
 
   /**
    * Metodo para obtener el hacedor logueado
@@ -69,12 +91,28 @@ export class UserService {
   }
 
   /**
+   * Obtiene el cliente creado
+   */
+  obtenerClienteCreado(){
+    const path = `http://localhost:8080/api/cliente/ultimoCliente`;
+    return this.http.get<Customer>(path);
+  }
+
+  /**
+   * Obtiene el hacedor creado
+   */
+   obtenerHacedorCreado(){
+    const path = `http://localhost:8080/api/hacedor/ultimoHacedor`;
+    return this.http.get<AddMaker>(path);
+  }
+
+  /**
    * Registrar los detalles del perfil hacedor
    * metodo que permite crear la habilidad del hacedor
    * @param habilidadHacedor 
    * @returns 
    */
-  crearHabilidadHacedor(habilidadHacedor: AddHabilidadHacedor):Observable<any> {
+  crearHabilidadHacedor(habilidadHacedor: HabilidadHacedor):Observable<any> {
     const path = `http://localhost:8080/api/habilidadHacedor`;
     return this.http.post(path, habilidadHacedor);
   }
