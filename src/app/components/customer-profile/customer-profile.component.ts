@@ -53,7 +53,8 @@ export class CustomerProfileComponent implements OnInit {
       this.nombre = this.cliente.nombre;
     })
 
-    //obteniendo los servicios solicitados por el cliente
+    //obteniendo los servicios solicitados por el cliente cuando la oferta es creada,
+    //una oferta es creada solo si hay hacedores que cumplen con las condiciones
     this._serviceServices.ObtenerServiciosCliente(this.idCliente).subscribe(result => {
       console.log(result);
 
@@ -165,6 +166,7 @@ export class CustomerProfileComponent implements OnInit {
       })
     })
     })
+    this.ngOnInit();
   }
 }
 
